@@ -35,8 +35,8 @@ app.put('/plans/:planId', async (req, res) => {
   res.sendStatus(200)
 })
 
-app.listen(8080, () => {
-  console.log("Server has started! Open http://localhost:8080")
+app.listen(6000, () => {
+  console.log("Server has started! Open http://localhost:6000")
 })
 
 

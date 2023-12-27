@@ -7,7 +7,7 @@ import { useState } from 'hooks'
 
 const saveSession = async (planId, session) => {
   try {
-    await fetch(`http://localhost:3009/plans/${ planId }`, {
+    await fetch(`http://localhost:6000/plans/${ planId }`, {
       method : 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body   : JSON.stringify(session),
