@@ -5,6 +5,8 @@ import { useEffect, useState } from 'hooks'
 
 import { Providers } from './providers'
 
+console.log('HUGE LOG THAT I CANT MISS')
+
 function App() {
   const [data, setData] = useState({ plans: [] })
 
