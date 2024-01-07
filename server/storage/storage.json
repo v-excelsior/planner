@@ -1,0 +1,56 @@
+{
+  "plans": {
+    "uid-1": {
+      "id": "uid-1",
+      "title": "Read English book",
+      "sessionDuration": 64,
+      "achievement": 320,
+      "sessions": [
+        {
+          "created": 1703145488558
+        }, {
+          "created": 1701432008000
+        }, {
+          "created": 1704618272513
+        }, {
+          "created": 1704622674038
+        }, {
+          "created": 1704622674038
+        }, {
+          "created": 1704622700621
+        }, {
+          "created": 1704623277070
+        }
+      ]
+    },
+    "uid-2": {
+      "id": "uid-2",
+      "title": "Read Ukrainian book",
+      "sessionDuration": 64,
+      "achievement": 320,
+      "sessions": [
+        {
+          "created": 1703145488558
+        }, {
+          "created": 1701432008000
+        }, {
+          "created": 1703611835510
+        }, {
+          "created": 1703612488100
+        }, {
+          "created": 1703612488100
+        }, {
+          "created": 1703612488100
+        }, {
+          "created": 1703612488100
+        }, {
+          "created": 1703612488100
+        }, {
+          "created": 1703612488100
+        }, {
+          "created": 1703612488100
+        }
+      ]
+    }
+  }
+}

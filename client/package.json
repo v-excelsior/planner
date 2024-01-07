@@ -8,20 +8,23 @@
     "@mui/icons-material": "^5.15.1",
     "@mui/material": "^5.15.1",
     "@mui/x-date-pickers": "^6.18.5",
+    "axios": "^1.6.5",
     "dayjs": "^1.11.10",
+    "effector": "^23.1.0",
+    "effector-react": "^23.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1",
     "eslint": "^8.56.0",
     "eslint-config-backendless": "^1.0.4",
     "eslint-plugin-import": "^2.28.0",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.30.0",
-    "eslint-plugin-simple-import-sort": "^10.0.0",
-    "@react-buddy/ide-toolbox": "^2.4.0",
-    "@react-buddy/palette-mui": "^5.0.1"
+    "eslint-plugin-simple-import-sort": "^10.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

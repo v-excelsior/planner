@@ -1,10 +1,9 @@
 const express = require("express")
 const app = express()
 const cors = require('cors')
-const fs = require('fs')
 const path = require('path')
 
-const { readPlans } = require('./operations')
+const { getPlans, getPlan, updatePlan } = require('./operations')
 
 app.use(cors())
 app.use(express.json())
@@ -15,24 +14,19 @@ app.get('/', function (req, res) {
 });
 
 // get all plans
-app.get('/plans', async (req, res) => {
-  const plans = readPlans()
-
-  res.send(plans)
-})
+app.get('/plans', async (req, res) => res.send(getPlans()))
 
 // add session to plan
 app.put('/plans/:planId', async (req, res) => {
   const { planId } = req.params
-  console.log({ b: req.body, planId })
 
-  const data = JSON.parse(readPlans())
+  const plan = getPlan(planId)
 
-  data.plans[planId].sessions.push(req.body)
+  plan.sessions.push(req.body)
 
-  fs.writeFileSync('./storage/plans.json', JSON.stringify(data))
+  updatePlan(plan)
 
-  res.sendStatus(200)
+  res.send(getPlans())
 })
 
 app.listen(3001, () => {

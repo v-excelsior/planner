@@ -1,30 +1,17 @@
 import { SessionsField } from 'branches'
 import { Card, CardActions, CardContent, DateTimePicker, IconButton, Icons, Typography } from 'leafs'
+import { saveSessionFx } from 'store'
 
 import { DayJS } from 'utils/date'
 import { styled } from 'utils/styles'
 import { useState } from 'hooks'
-
-const saveSession = async (planId, session) => {
-  try {
-    await fetch(`http://localhost:3001/plans/${ planId }`, {
-      method : 'PUT',
-      headers: { 'Content-Type': 'application/json' },
-      body   : JSON.stringify(session),
-    })
-  } catch (e) {
-    console.error(e)
-  }
-}
 
 export function Plan({ data }) {
   const { id, title, achievement, sessions } = data
 
   const [session, setSession] = useState({ created: Date.now() })
 
-  const onClick = () => {
-    saveSession(id, session)
-  }
+  const onClick = () => saveSessionFx({ planId: id, session })
 
   const completionRate = (sessions.length / achievement || 0).toFixed(2)
 

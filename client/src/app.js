@@ -1,32 +1,21 @@
 import { Plan } from 'branches'
+import { useUnit } from 'effector-react'
+import { $plans, loadPlansFx } from 'store'
 
 import { styled } from 'utils/styles'
-import { useEffect, useState } from 'hooks'
+import { useEffect } from 'hooks'
 
 import { Providers } from './providers'
 
-console.log('HUGE LOG THAT I CANT MISS')
-
 function App() {
-  const [data, setData] = useState({ plans: [] })
+  const plans = useUnit($plans)
 
-  useEffect(() => {
-    async function loadData() {
-      const data = await fetch('http://localhost:3001/plans')
-        .then(r => r.json())
-
-      setData(data)
-    }
-
-    loadData()
-  }, [])
-
-  const { plans } = data
+  useEffect(() => void loadPlansFx(), [])
 
   return (
     <Providers>
       <AppContainer className="App">
-        { Object.keys(plans).map(key => (<Plan key={ key } data={ plans[key] }/>)) }
+        { plans.map(plan => (<Plan key={ plan.id } data={ plan }/>)) }
       </AppContainer>
     </Providers>
   )
