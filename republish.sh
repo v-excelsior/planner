@@ -1,28 +1,24 @@
-echo "Removing old build..."
-git pull
-echo "Removing old build..."
+SCRIPT_DIR="$(dirname "$(readlink -f "$0")")"
 
-echo "Removing old build..."
+git pull
+
 rm -rf build
 echo "Removing old build DONE!"
 
-echo "Updating SERVER deps..."
-cd ./server || exit
-echo "Removing old SERVER deps..."
-rm -rf node_modules
-echo "Installing new SERVER deps..."
-npm i
-echo "Updating SERVER DONE!"
+if [ "$1" != "nu" ]
+then
+      cd "$SCRIPT_DIR"/server || exit
+      rm -rf node_modules
+      npm i
+      echo "Updating SERVER DONE!"
 
-echo "Updating CLIENT deps..."
-cd ../client || exit
-echo "Removing old CLIENT deps..."
-rm -rf node_modules
-echo "Installing new CLIENT deps..."
-npm i
-echo "Updating CLIENT DONE!"
+      cd "$SCRIPT_DIR"/client || exit
+      rm -rf node_modules
+      npm i
+      echo "Updating CLIENT DONE!"
+fi
 
-
-echo "Building CLIENT..."
+cd "$SCRIPT_DIR"/client || exit
 npm run build
-echo "Building CLIENT DONE!"
+
+echo "DONE!"
