@@ -3,9 +3,15 @@ const app = express()
 const cors = require('cors')
 const path = require('path')
 
+const corsOptions = {
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT'],
+  allowedHeaders: ['Content-Type',],
+};
+
 const { getPlans, getPlan, updatePlan } = require('./operations')
 
-app.use(cors())
+app.use(cors(corsOptions))
 app.use(express.json())
 app.use(express.static(path.resolve(__dirname, '../build')))
 
