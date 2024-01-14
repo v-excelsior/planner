@@ -22,9 +22,11 @@ function App() {
 }
 
 const AppContainer = styled('div')({
+  padding      : '10px',
   display      : 'flex',
-  flexDirection: 'column',
-  gap          : '12px',
+  flexDirection: 'row',
+  flexWrap     : 'wrap',
+  gap          : '10px',
 })
 
 export default App

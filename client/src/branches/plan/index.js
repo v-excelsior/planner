@@ -1,5 +1,5 @@
 import { SessionsField } from 'branches'
-import { Card, CardActions, CardContent, DateTimePicker, IconButton, Icons, Typography } from 'leafs'
+import { Card, CardActions, CardContent, DateTimePicker, IconButton, Icons, TextField, Typography } from 'leafs'
 import { saveSessionFx } from 'store'
 
 import { DayJS } from 'utils/date'
@@ -17,10 +17,10 @@ export function Plan({ data }) {
 
   return (
     <PlanContainer>
-      <CardContent>
+      <PlanHeader>
         <Title>{ title } ({ completionRate }%)</Title>
         <SessionsField sessions={ sessions } count={ achievement }/>
-      </CardContent>
+      </PlanHeader>
 
       <Actions>
         <DateTimePicker
@@ -28,6 +28,9 @@ export function Plan({ data }) {
           size="small"
           defaultValue={ DayJS(session.created) }
           onChange={ v => setSession({ created: +v }) }
+          slots={{
+            textField: props => <TextField size="small" { ...props }/>,
+          }}
         />
 
         <IconButton onClick={ onClick }>
@@ -38,13 +41,20 @@ export function Plan({ data }) {
   )
 }
 
+const PlanHeader = styled(CardContent)({
+  display      : 'flex',
+  flexDirection: 'column',
+  alignItems   : 'center',
+})
+
 const PlanContainer = styled(Card)({
   display       : 'flex',
   flexDirection : 'column',
+  flexGrow     : 1,
+  flexShrink   : 1,
+  flexBasis    : '600px',
   justifyContent: 'space-between',
   alignItems    : 'center',
-  margin        : '10px auto',
-  width         : 'max-content',
 })
 
 const Title = styled(Typography)({

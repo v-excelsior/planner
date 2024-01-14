@@ -24,12 +24,9 @@ export const SessionsField = memo(function Minefield({ sessions, count }) {
 })
 
 const Field = styled('div')({
-  display            : 'grid',
-  gridAutoFlow       : 'column',
-  gridTemplateRows   : 'repeat(5, minmax(24px, 1fr))',
-  gridTemplateColumns: 'repeat(auto-fill, minmax(24px, 1fr))',
-  height             : '100%',
-  overflow           : 'auto',
-  maxWidth           : '480px',
+  display  : 'flex',
+  flexWrap : 'wrap',
+  maxHeight: '180px',
+  height   : '100%',
+  overflow : 'auto',
 })
-
