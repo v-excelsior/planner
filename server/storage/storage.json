@@ -4,25 +4,83 @@
       "id": "books",
       "title": "Books",
       "achievement": 365,
-      "sessions": []
+      "sessions": [
+        {
+          "created": 1705236054085
+        }, {
+          "created": 1705236054085
+        }, {
+          "created": 1705236054085
+        }, {
+          "created": 1705236054085
+        }, {
+          "created": 1705236054085
+        }, {
+          "created": 1705236054085
+        }, {
+          "created": 1705236054085
+        }
+      ]
     },
     "eng": {
       "id": "eng",
       "title": "English",
       "achievement": 365,
-      "sessions": []
+      "sessions": [
+        {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }, {
+          "created": 1705236054451
+        }
+      ]
     },
     "sport": {
       "id": "sport",
       "title": "Sport",
       "achievement": 365,
-      "sessions": []
+      "sessions": [
+        {
+          "created": 1705236054767
+        }, {
+          "created": 1705236054767
+        }, {
+          "created": 1705236054767
+        }, {
+          "created": 1705236054767
+        }, {
+          "created": 1705236054767
+        }, {
+          "created": 1705236054767
+        }, {
+          "created": 1705236054767
+        }
+      ]
     },
     "programming": {
       "id": "programming",
       "title": "Programming",
       "achievement": 100,
-      "sessions": []
+      "sessions": [
+        {
+          "created": 1705236055139
+        }, {
+          "created": 1705236055139
+        }, {
+          "created": 1705236055139
+        }
+      ]
     },
     "bicycle": {
       "id": "bicycle",
