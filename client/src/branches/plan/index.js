@@ -13,12 +13,12 @@ export function Plan({ data }) {
 
   const onClick = () => saveSessionFx({ planId: id, session })
 
-  const completionRate = (sessions.length / achievement || 0).toFixed(2)
+  const completionRate = (sessions.length / achievement).toFixed(2) * 100
 
   return (
     <PlanContainer>
       <PlanHeader>
-        <Title>{ title } ({ completionRate }%)</Title>
+        <Title>{ title } | { achievement }/{ completionRate } | { sessions.length }%</Title>
         <SessionsField sessions={ sessions } count={ achievement }/>
       </PlanHeader>
 
@@ -50,9 +50,9 @@ const PlanHeader = styled(CardContent)({
 const PlanContainer = styled(Card)({
   display       : 'flex',
   flexDirection : 'column',
-  flexGrow     : 1,
-  flexShrink   : 1,
-  flexBasis    : '600px',
+  flexGrow      : 1,
+  flexShrink    : 1,
+  flexBasis     : '600px',
   justifyContent: 'space-between',
   alignItems    : 'center',
 })
