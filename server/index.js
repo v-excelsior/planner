@@ -29,6 +29,19 @@ app.put('/plans/:planId', async (req, res) => {
   res.send(getPlans())
 })
 
+// remove last session from plan
+app.delete('/plans/:planId', async (req, res) => {
+  const { planId } = req.params
+
+  const plan = getPlan(planId)
+
+  plan.sessions.splice(-1)
+
+  updatePlan(plan)
+
+  res.send(getPlans())
+})
+
 app.listen(3001, () => {
   console.log("Server has started! Open http://localhost:3001")
 })
