@@ -8,6 +8,7 @@ import { useState } from 'hooks'
 
 const SUCCESS_COLOR = '#4BB54373'
 
+
 export function Plan({ data }) {
   const { id, title, achievement, sessions } = data
 
