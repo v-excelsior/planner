@@ -2,7 +2,7 @@ import { SessionsField } from 'branches'
 import { Card, CardActions, CardContent, DateTimePicker, IconButton, Icons, TextField, Typography } from 'leafs'
 import { removeLastSessionFx, saveSessionFx } from 'store'
 
-import { DayJS } from 'utils/date'
+import { DayJS, getStreak } from 'utils/date'
 import { styled } from 'utils/styles'
 import { useState } from 'hooks'
 
@@ -16,8 +16,9 @@ export function Plan({ data }) {
   const onAddClick = () => saveSessionFx({ planId: id, session })
   const onRemoveClick = () => removeLastSessionFx({ planId: id })
 
-  const completionRate = (sessions.length / achievement).toFixed(4) * 100
+  const completionRate = parseFloat(((sessions.length / achievement) * 100).toFixed(4))
   const isCompletedToday = !!sessions.length && DayJS(sessions[sessions.length - 1].created).isToday()
+  const streak = getStreak(sessions)
 
   const containerStyles = isCompletedToday ? { backgroundColor: SUCCESS_COLOR } : {}
 
@@ -25,6 +26,7 @@ export function Plan({ data }) {
     <PlanContainer sx={ containerStyles }>
       <PlanHeader>
         <Title>{ title } | { achievement }/{ sessions.length } | { completionRate }%</Title>
+        <Subtitle>Streak: { streak }</Subtitle>
         <SessionsField sessions={ sessions } count={ achievement }/>
       </PlanHeader>
 
@@ -68,8 +70,11 @@ const PlanContainer = styled(Card)({
 })
 
 const Title = styled(Typography)({
-  textAlign: 'start',
-  fontSize : '24px',
+  fontSize: '24px',
+})
+
+const Subtitle = styled(Typography)({
+  fontSize: '12px',
 })
 
 const Actions = styled(CardActions)({
