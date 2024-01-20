@@ -1,24 +1,38 @@
 import DayJS from 'dayjs'
 import isToday from 'dayjs/plugin/isToday'
+import isYesterday from 'dayjs/plugin/isYesterday'
 
 DayJS.extend(isToday)
+DayJS.extend(isYesterday)
 
 const toReadable = timestamp => DayJS(timestamp).format('D/M/YYYY HH:mm')
 
 function getStreak(sessions) {
   let streak = 0
-  let prevDay = DayJS()
 
-  for (let i = sessions.length - 1; i > 0; i--) {
-    const currentDay = DayJS(sessions[i].created)
+  const dates = sessions.map(session => DayJS(session.created))
 
-    if (currentDay.isSame(prevDay, 'day') || currentDay.subtract(1, 'day').isSame(prevDay, 'day')) {
+  let once = true
+
+  for (let i = dates.length - 1; i >= 0; i--) {
+    const currentDay = dates[i]
+    const prevDay = i ? dates[i - 1] : null
+
+    if (currentDay.isToday() || currentDay.isYesterday()) {
+      if (once) {
+        once = false
+        streak++
+      }
+    }
+
+    if (
+      prevDay && prevDay.isSame(currentDay.subtract(1, 'day'), 'day')
+      || prevDay && prevDay.isSame(currentDay, 'day')
+    ) {
       streak++
     } else {
       break
     }
-
-    prevDay = currentDay
   }
 
   return streak
