@@ -13,6 +13,7 @@ function getStreak(sessions) {
   const dates = sessions.map(session => DayJS(session.created))
 
   let once = true
+  let streakPossible = false
 
   for (let i = dates.length - 1; i >= 0; i--) {
     const currentDay = dates[i]
@@ -21,6 +22,7 @@ function getStreak(sessions) {
     if (currentDay.isToday() || currentDay.isYesterday()) {
       if (once) {
         once = false
+        streakPossible = true
         streak++
       }
     }
@@ -35,7 +37,7 @@ function getStreak(sessions) {
     }
   }
 
-  return streak
+  return streakPossible ? streak : 0
 }
 
 export { DayJS, toReadable, getStreak }

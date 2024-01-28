@@ -4,7 +4,7 @@ import { removeLastSessionFx, saveSessionFx } from 'store'
 
 import { DayJS, getStreak } from 'utils/date'
 import { styled } from 'utils/styles'
-import { useState } from 'hooks'
+import { useCallback, useState } from 'hooks'
 
 const SUCCESS_COLOR = '#4BB54373'
 
@@ -22,6 +22,8 @@ export function Plan({ data }) {
 
   const containerStyles = isCompletedToday ? { backgroundColor: SUCCESS_COLOR } : {}
 
+  const DateInput = useCallback(props => <TextField size="small" { ...props }/>, [])
+
   return (
     <PlanContainer sx={ containerStyles }>
       <PlanHeader>
@@ -37,12 +39,10 @@ export function Plan({ data }) {
 
         <DateTimePicker
           label="Choose Date"
-          size="small"
+          ampm={ false }
           defaultValue={ DayJS(session.created) }
           onChange={ v => setSession({ created: +v }) }
-          slots={{
-            textField: props => <TextField size="small" { ...props }/>,
-          }}
+          slots={{ textField: DateInput }}
         />
 
         <IconButton onClick={ onAddClick }>
