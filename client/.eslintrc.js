@@ -6,30 +6,21 @@ module.exports = {
       'warn',
       {
         'groups': [
-          /* Styles */
-          [
-            '^.+\\.less$',
-          ],
-
           /* node_modules */
           [
             '^react',
             '^@?\\w',
           ],
 
-          /* DashboardsSDK shared group */
-          [
-            '^common',
-            '^shared',
-          ],
-
-          /* Backendless related groups */
           [
             '^constants',
-            '^components',
+            '^branches',
             '^utils',
+            '^leafs',
             '^contexts',
             '^hooks',
+            'providers',
+            'store',
           ],
 
           /* Relative imports */

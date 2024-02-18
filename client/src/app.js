@@ -1,11 +1,9 @@
-import { Plan } from 'branches'
-import { useUnit } from 'effector-react'
-import { $plans, loadPlansFx } from 'store'
-
+import { Plans, SessionForm } from 'branches'
 import { styled } from 'utils/styles'
-import { useEffect } from 'hooks'
-
-import { Providers } from './providers'
+import { Box } from 'leafs'
+import { useEffect, useUnit } from 'hooks'
+import { Providers } from 'providers'
+import { $plans, loadPlansFx } from 'store'
 
 function App() {
   const plans = useUnit($plans)
@@ -15,17 +13,17 @@ function App() {
   return (
     <Providers>
       <AppContainer className="App">
-        { plans.map(plan => (<Plan key={ plan.id } data={ plan }/>)) }
+        <SessionForm/>
+        <Plans plans={ plans }/>
       </AppContainer>
     </Providers>
   )
 }
 
-const AppContainer = styled('div')({
+const AppContainer = styled(Box)({
   padding      : '10px',
   display      : 'flex',
-  flexDirection: 'row',
-  flexWrap     : 'wrap',
+  flexDirection: 'column',
   gap          : '10px',
 })
 

@@ -1,6 +1,7 @@
-import { Plan } from './plan'
+import { Plans } from './plans'
+import { SessionForm } from './session-form'
 import { SessionsField } from './sessions-field'
 
 export {
-  SessionsField, Plan,
+  SessionsField, Plans, SessionForm,
 }

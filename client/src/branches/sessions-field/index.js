@@ -1,20 +1,10 @@
-import { memo } from 'react'
-
 import { styled } from 'utils/styles'
+import { memo, useMemo } from 'hooks'
 
 import { Session } from './session'
 
 export const SessionsField = memo(function Minefield({ sessions, count }) {
-  const sessionsElements = []
-
-  for (let i = 0; i < count; i++) {
-    sessionsElements.push(
-      <Session
-        key={ i }
-        data={ sessions[i] }
-      />
-    )
-  }
+  const sessionsElements = useSessionsElements(sessions, count)
 
   return (
     <Field>
@@ -22,6 +12,18 @@ export const SessionsField = memo(function Minefield({ sessions, count }) {
     </Field>
   )
 })
+
+const useSessionsElements = (sessions, count) => {
+  return useMemo(() => {
+    const sessionsElements = []
+
+    for (let i = 0; i < count; i++) {
+      sessionsElements.push(<Session key={ i } data={ sessions[i] } />)
+    }
+
+    return sessionsElements
+  }, [sessions, count])
+}
 
 const Field = styled('div')({
   display  : 'flex',

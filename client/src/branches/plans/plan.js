@@ -1,19 +1,19 @@
-import { SessionsField } from 'branches'
-import { Card, CardActions, CardContent, DateTimePicker, IconButton, Icons, TextField, Typography } from 'leafs'
-import { removeLastSessionFx, saveSessionFx } from 'store'
+import { useUnit } from 'effector-react'
 
+import { SessionsField } from 'branches'
 import { DayJS, getStreak } from 'utils/date'
 import { styled } from 'utils/styles'
-import { useCallback, useState } from 'hooks'
+import { Card, CardActions, CardContent, IconButton, Icons, Typography } from 'leafs'
+import { $session, removeLastSessionFx, saveSessionFx } from 'store'
 
 const SUCCESS_COLOR = '#4BB54373'
 
 export function Plan({ data }) {
   const { id, title, achievement, sessions } = data
 
-  const [session, setSession] = useState({ created: Date.now() })
+  const currentSessionState = useUnit($session)
 
-  const onAddClick = () => saveSessionFx({ planId: id, session })
+  const onAddClick = () => saveSessionFx({ planId: id, session: currentSessionState })
   const onRemoveClick = () => removeLastSessionFx({ planId: id })
 
   const completionRate = parseFloat(((sessions.length / achievement) * 100).toFixed(4))
@@ -21,8 +21,6 @@ export function Plan({ data }) {
   const streak = getStreak(sessions)
 
   const containerStyles = isCompletedToday ? { backgroundColor: SUCCESS_COLOR } : {}
-
-  const DateInput = useCallback(props => <TextField size="small" { ...props }/>, [])
 
   return (
     <PlanContainer sx={ containerStyles }>
@@ -36,14 +34,6 @@ export function Plan({ data }) {
         <IconButton onClick={ onRemoveClick }>
           <Icons.RemoveCircle/>
         </IconButton>
-
-        <DateTimePicker
-          label="Choose Date"
-          ampm={ false }
-          defaultValue={ DayJS(session.created) }
-          onChange={ v => setSession({ created: +v }) }
-          slots={{ textField: DateInput }}
-        />
 
         <IconButton onClick={ onAddClick }>
           <Icons.AddCircle/>
